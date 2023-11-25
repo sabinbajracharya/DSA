@@ -33,7 +33,6 @@ class BST:
 
       # Delete that smallest node from the root's right
       root.right = self.delete(root.right, root.value)
-      return root
 
     return root
 
