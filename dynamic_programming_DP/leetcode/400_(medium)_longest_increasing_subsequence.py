@@ -18,7 +18,11 @@
 # Output: 1
 
 
+from ast import List
+
+
 class Solution:
+    # Top Down Approach
     def lengthOfLIS(self, nums: List[int]) -> int:
         memo = {}
         def update(num_index, next_index):
@@ -47,3 +51,14 @@ class Solution:
         for index, num in enumerate(nums):
           bigger = max(bigger, 1 + update(index, index + 1))
         return bigger
+
+    # Bottom UP Approach
+    def lengthOfLIS2(self, nums: List[int]) -> int:
+        result = [1] * len(nums)
+
+        for i in range(len(nums) - 1, -1, -1):
+          for j in range(i+1, len(nums)):
+            if nums[i] < nums[j]:
+              result[i] = max(result[i], 1 + result[j])
+
+        return max(result)
